@@ -1,38 +1,111 @@
-.App {
-  text-align: center;
+/* ***** REGLAGE PAGE ***** */
+.logo {
+  height: 50px;
 }
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.charging {
   display: flex;
-  flex-direction: column;
-  align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
+  align-items: center;
+}
+.container {
+  width: 80%;
+  margin: auto;
+}
+/* ***** HEADER ***** */
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 50px;
+}
+.left {
+  display: flex;
+}
+.right {
+  display: flex;
+}
+.btn-plus {
+  height: 40px;
+  margin: auto 10px;
+  border: none;
+  background-color: #f56a29;
   color: white;
+  border-radius: 5px;
+  font-size: medium;
+  outline: none;
+  cursor: pointer;
+}
+.btn-search {
+  border: none;
+  background-color: white;
+  outline: none;
+}
+.btn-search:hover {
+  cursor: pointer;
+  border-bottom: 2px solid #f56a29;
+}
+.profil {
+  border: none;
+  background-color: white;
+  outline: none;
+}
+.profil:hover {
+  cursor: pointer;
+  border-bottom: 2px solid #f56a29;
+}
+.orange {
+  height: 80px;
+  background-color: #f56a29;
+  border-radius: 0px 0px 100% 100%;
+}
+i {
+  font-size: large;
+}
+.fas.fa-search {
+  margin: 0px 10px;
+}
+/* ***** BODY ***** */
+.offers-description {
+  padding: 0px 20px;
+}
+.box {
+  margin: 15px auto;
+  height: 150px;
+  width: 80%;
+  display: flex;
+  color: black;
+  border-radius: 5px;
+  box-shadow: #00000038 5px 5px 5px;
+  border: none;
+}
+.offers {
+  height: 150px;
+  width: 150px;
+  object-fit: cover;
+  border-radius: 5px;
 }
 
-.App-link {
-  color: #61dafb;
+h3 {
+  margin: 0px;
+  text-decoration: none;
+}
+.price {
+  color: #f56a29;
+}
+/* ***** ADS ***** */
+
+.ad-box {
+  width: 600px;
+  margin: auto;
+  box-sizing: border-box;
+  box-shadow: #17161647 5px 5px 5px 5px;
+  border-radius: 5px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.picture-description {
+  width: 600px;
+}
+.creator {
+  border: 1px solid;
+  width: 150px;
 }
