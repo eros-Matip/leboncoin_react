@@ -48,6 +48,11 @@
   border: none;
   background-color: white;
   outline: none;
+  display: flex;
+  align-items: center;
+}
+a {
+  display: flex;
 }
 .btn-search:hover {
   cursor: pointer;

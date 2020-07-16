@@ -17,13 +17,15 @@ const Title = () => {
             <i className="fas fa-search"></i>Rechercher
           </button>
         </div>
-        <div className="right">
-          <button className="profil">
-            <i className="far fa-user"></i>
-            <br />
-            Se connecter
-          </button>
-        </div>
+        <Link to="/user/log_in">
+          <div className="right">
+            <button className="profil">
+              <i className="far fa-user"></i>
+              <br />
+              Se connecter
+            </button>
+          </div>
+        </Link>
       </div>
     </div>
   );

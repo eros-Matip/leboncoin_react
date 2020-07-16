@@ -20,7 +20,6 @@ const Ad = () => {
     };
     fetchData();
   }, [id]);
-  console.log("data :", data);
   return (
     <div>
       <Title />

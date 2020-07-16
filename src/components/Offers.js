@@ -18,7 +18,6 @@ function Offers() {
 
     fetchData();
   }, []);
-  console.log(data);
 
   return (
     <div className="page">
@@ -31,7 +30,6 @@ function Offers() {
         <div>
           {data.offers.map((offer, index) => {
             const dateString = Date(offer.created).toString();
-            console.log("dateString :", dateString);
 
             return (
               <Link key={offer._id} to={"/offer/" + offer._id}>
