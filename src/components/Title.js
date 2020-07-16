@@ -1,12 +1,15 @@
 import React from "react";
 import logo from "../pictures/logo.png";
+import { Link } from "react-router-dom";
 
 const Title = () => {
   return (
-    <>
+    <div className="headerBand">
       <div className="header container">
         <div className="left">
-          <img className="logo" alt="leboncoin" src={logo}></img>
+          <Link to="/">
+            <img className="logo" alt="leboncoin" src={logo}></img>
+          </Link>
           <button className="btn-plus">
             <i className="far fa-plus-square"></i> Déposer une annonce
           </button>
@@ -22,7 +25,7 @@ const Title = () => {
           </button>
         </div>
       </div>
-    </>
+    </div>
   );
 };
 

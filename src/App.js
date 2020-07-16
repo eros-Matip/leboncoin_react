@@ -7,16 +7,6 @@ import Ad from "./components/Ad";
 function App() {
   return (
     <Router>
-      {/* <nav>
-        <ul>
-          <li>
-            <Link to="/">Home</Link>
-          </li>
-          <li>
-            <Link to="/offer">annonce</Link>
-          </li>
-        </ul>
-      </nav> */}
       <Switch>
         <Route path="/offer/:id">
           <Ad />

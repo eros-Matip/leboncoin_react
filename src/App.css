@@ -1,4 +1,10 @@
 /* ***** REGLAGE PAGE ***** */
+.page {
+  background-color: rgb(238, 238, 238);
+}
+.ad-page {
+  background-color: rgb(238, 238, 238);
+}
 .logo {
   height: 50px;
 }
@@ -16,7 +22,10 @@
 .header {
   display: flex;
   justify-content: space-between;
-  margin-bottom: 50px;
+  background-color: rgb(255, 255, 255);
+}
+.headerBand {
+  background-color: white;
 }
 .left {
   display: flex;
@@ -77,12 +86,13 @@ i {
   border-radius: 5px;
   box-shadow: #00000038 5px 5px 5px;
   border: none;
+  background-color: white;
 }
 .offers {
   height: 150px;
   width: 150px;
   object-fit: cover;
-  border-radius: 5px;
+  border-radius: 5px 0px 0px 5px;
 }
 
 h3 {
@@ -95,17 +105,55 @@ h3 {
 /* ***** ADS ***** */
 
 .ad-box {
-  width: 600px;
-  margin: auto;
+  margin: 0px 20px 40px 0px;
   box-sizing: border-box;
   box-shadow: #17161647 5px 5px 5px 5px;
   border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  background-color: white;
 }
 
 .picture-description {
-  width: 600px;
+  width: 100%;
 }
 .creator {
-  border: 1px solid;
-  width: 150px;
+  height: 100%;
+  padding: 20px 20px 10px 20px;
+  background-color: white;
+  border-radius: 5px;
+  box-shadow: #00000045 5px 5px 5px;
+}
+.all-box {
+  display: flex;
+  width: 80%;
+  margin: auto;
+  padding: 50px;
+}
+h2 {
+  margin: 0;
+}
+.btn-buy {
+  width: 250px;
+  height: 40px;
+  background-color: #f56a29;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-weight: 700;
+  margin: 20px;
+  outline: none;
+  cursor: pointer;
+}
+.blue {
+  color: blue;
+  font-weight: 600;
+  margin: 0px 0px 40px 0px;
+}
+.ad-description {
+  padding: 20px;
+}
+.decription {
+  padding: 20px;
 }

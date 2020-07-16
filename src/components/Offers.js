@@ -21,7 +21,7 @@ function Offers() {
   console.log(data);
 
   return (
-    <div>
+    <div className="page">
       <Title />
       <div className="orange"></div>
 
@@ -30,6 +30,9 @@ function Offers() {
       ) : (
         <div>
           {data.offers.map((offer, index) => {
+            const dateString = Date(offer.created).toString();
+            console.log("dateString :", dateString);
+
             return (
               <Link key={offer._id} to={"/offer/" + offer._id}>
                 <div className="box">
@@ -46,7 +49,7 @@ function Offers() {
                       <h3 className="price">{offer.price} €</h3>
                     </div>
                     <div>
-                      <p>{offer.created}</p>
+                      <p>{dateString}</p>
                     </div>
                   </div>
                 </div>

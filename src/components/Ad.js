@@ -27,21 +27,25 @@ const Ad = () => {
       {isLoading === true ? (
         <p className="charging">Chargement en cours veuillez patienter ...</p>
       ) : (
-        <div>
-          <div className="creator">
-            <h2>{data.creator.account.username}</h2>
-            <button className="btn-buy">Acheter</button>
-          </div>
-          <div className="ad-box">
-            <img
-              className="picture-description"
-              alt={data.picture}
-              src={data.picture.secure_url}
-            ></img>
-            <div>
-              <h2>{data.title}</h2>
-              <h2>{data.price} €</h2>
-              <p>{data.created}</p>
+        <div className="ad-page">
+          <div className="all-box">
+            <div className="ad-box">
+              <img
+                className="picture-description"
+                alt={data.picture}
+                src={data.picture.secure_url}
+              ></img>
+              <div className="decription">
+                <h2>{data.title}</h2>
+                <h2>{data.price} €</h2>
+                <p>{data.created}</p>
+              </div>
+            </div>
+            <div className="creator">
+              <h2>{data.creator.account.username}</h2>
+              <p className="blue">2 Annonces en ligne</p>
+              <hr />
+              <button className="btn-buy">Acheter</button>
             </div>
           </div>
           <div className="ad-description container">
