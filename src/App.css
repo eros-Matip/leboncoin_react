@@ -76,6 +76,9 @@ i {
 /* ***** BODY ***** */
 .offers-description {
   padding: 0px 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 .box {
   margin: 15px auto;
@@ -156,4 +159,7 @@ h2 {
 }
 .decription {
   padding: 20px;
+}
+a {
+  text-decoration: none;
 }

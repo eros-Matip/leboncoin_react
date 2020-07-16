@@ -36,9 +36,13 @@ const Ad = () => {
                 src={data.picture.secure_url}
               ></img>
               <div className="decription">
-                <h2>{data.title}</h2>
-                <h2>{data.price} €</h2>
-                <p>{data.created}</p>
+                <div>
+                  <h2>{data.title}</h2>
+                  <h2>{data.price} €</h2>
+                </div>
+                <div>
+                  <p>{data.created}</p>
+                </div>
               </div>
             </div>
             <div className="creator">
