@@ -3,7 +3,7 @@ import Title from "./Title";
 import axios from "axios";
 import { Link } from "react-router-dom";
 
-const Log_in = () => {
+const LogIn = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [data, setData] = useState({});
@@ -58,4 +58,4 @@ const Log_in = () => {
     </>
   );
 };
-export default Log_in;
+export default LogIn;
