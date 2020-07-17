@@ -168,3 +168,33 @@ h2 {
 a {
   text-decoration: none;
 }
+/* ***** CREATE ***** */
+.block {
+  background-color: rgb(238, 238, 238);
+  height: 100vh;
+  display: flex;
+}
+.all-create {
+  display: flex;
+  background-color: white;
+  box-sizing: border-box;
+  padding: 20px;
+  border-radius: 5px;
+}
+.info-create {
+  display: flex;
+  flex-direction: column;
+  margin: 10px;
+}
+.create {
+  margin: 10px;
+}
+li {
+  list-style: none;
+}
+.titleCreate {
+  margin: 10px 0px 30px 0px;
+}
+ul {
+  padding: 0px;
+}

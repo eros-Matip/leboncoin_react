@@ -1,11 +1,12 @@
 import React, { useState } from "react";
 import Title from "./Title";
 import axios from "axios";
+import { Link } from "react-router-dom";
 
 const Log_in = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  //   const [data, setData] = useState({});
+  const [data, setData] = useState({});
 
   const handleEmail = (event) => {
     setEmail(event.target.value);
@@ -20,8 +21,9 @@ const Log_in = () => {
       "https://leboncoin-api.herokuapp.com/user/log_in",
       { email: email, password: password }
     );
-    console.log(response.data);
+    setData(response.data);
   };
+  console.log(data);
 
   return (
     <>
@@ -47,7 +49,9 @@ const Log_in = () => {
           <hr />
           <div>
             <strong>Vous n'avez pas de compte ?</strong>
-            <button>Créer un compte</button>
+            <Link to="/user/create">
+              <button>Créer un compte</button>
+            </Link>
           </div>
         </form>
       </div>
