@@ -1,27 +1,42 @@
-import React from "react";
+import React, { useState } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import "./App.css";
-import Offers from "./components/Offers";
-import Ad from "./components/Ad";
-import LogIn from "./components/Login";
-import Create from "./components/Create";
-// import Created from "./components/"
+import Offers from "./containers/Offers";
+import Annonces from "./components/Annonces";
+import LogIn from "./containers/Login";
+import SingUp from "./containers/SingUp";
+import Title from "./containers/Title";
+import Filters from "./components/Filters";
+import Cookies from "js-cookie";
 
 function App() {
+  const tokenFromCookie = Cookies.get("userToken");
+
+  let newState;
+  if (tokenFromCookie) {
+    newState = { token: tokenFromCookie };
+  } else {
+    newState = null;
+  }
+  const [user, setUser] = useState(newState);
+
+  console.log("tokenFromCookie->", tokenFromCookie);
+
   return (
     <Router>
+      <Title user={user} setUser={setUser} />
       <Switch>
-        {/* <Route path="user/connected">
-          <Created/>
-        </Route> */}
-        <Route path="/user/create">
-          <Create />
+        <Route path="/offer/whith-count">
+          <Filters />
         </Route>
-        <Route path="/user/log_in">
-          <LogIn />
+        <Route path="/sign_up">
+          <SingUp />
+        </Route>
+        <Route path="/log_in">
+          <LogIn user={user} setUser={setUser} />
         </Route>
         <Route path="/offer/:id">
-          <Ad />
+          <Annonces />
         </Route>
         <Route path="/">
           <Offers />

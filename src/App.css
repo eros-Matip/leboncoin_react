@@ -2,7 +2,7 @@
 .page {
   background-color: rgb(238, 238, 238);
 }
-.ad-page {
+.annonce-page {
   background-color: rgb(238, 238, 238);
 }
 .logo {
@@ -63,6 +63,9 @@ a {
   background-color: white;
   outline: none;
 }
+.btn-connecting {
+  margin: 0px;
+}
 .profil:hover {
   cursor: pointer;
   border-bottom: 2px solid #f56a29;
@@ -112,7 +115,7 @@ h3 {
 }
 /* ***** ADS ***** */
 
-.ad-box {
+.annonce-box {
   margin: 0px 20px 40px 0px;
   box-sizing: border-box;
   box-shadow: #17161647 5px 5px 5px 5px;
@@ -121,6 +124,41 @@ h3 {
   flex-direction: column;
   flex: 1;
   background-color: white;
+}
+.filter {
+  display: flex;
+  justify-content: center;
+}
+.block-filter {
+  height: 100px;
+  width: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 5px;
+  background-color: white;
+  padding: 0px 20px;
+  margin-top: -40px;
+}
+.btn-filter {
+  background-color: #4183d7;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  height: 40px;
+  width: 150px;
+  cursor: pointer;
+}
+.input-filter {
+  background-color: rgb(238, 238, 238);
+  border: none;
+  border-radius: 5px;
+  height: 40px;
+  width: 300px;
+  margin-right: 10px;
+  font-size: large;
+  box-sizing: border-box;
+  padding: 10px;
 }
 
 .picture-description {
@@ -159,7 +197,7 @@ h2 {
   font-weight: 600;
   margin: 0px 0px 40px 0px;
 }
-.ad-description {
+.annonce-description {
   padding: 20px;
 }
 .decription {
@@ -167,6 +205,9 @@ h2 {
 }
 a {
   text-decoration: none;
+}
+.btn-page {
+  display: flex;
 }
 /* ***** LOG_IN ***** */
 .pageLogIn {

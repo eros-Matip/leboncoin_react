@@ -1,15 +1,19 @@
 import React, { useState } from "react";
-import Title from "./Title";
 import axios from "axios";
+import cookie from "js-cookie";
+import { useHistory } from "react-router-dom";
 
-const Create = () => {
-  const [pseudo, setPseudo] = useState("");
+const SignUp = () => {
+  const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [passwordConfirm, setPasswordConfirm] = useState("");
+  const [checkbox, setCheckbox] = useState(false);
 
-  const handlePseudo = (event) => {
-    setPseudo(event.target.value);
+  const history = useHistory();
+
+  const handleUsername = (event) => {
+    setUsername(event.target.value);
   };
   const handleEmail = (event) => {
     setEmail(event.target.value);
@@ -26,18 +30,23 @@ const Create = () => {
     const response = await axios.post(
       "https://leboncoin-api.herokuapp.com/user/sign_up",
       {
-        pseudo: pseudo,
+        username: username,
         email: email,
         password: password,
-        passwordConfirm: passwordConfirm,
       }
     );
-    console.log(response.data);
+    if (response.data.token) {
+      cookie.set("token", response.data.token);
+      history.push("/login");
+    }
+  };
+
+  const handleCheckboxChange = () => {
+    setCheckbox(!checkbox);
   };
 
   return (
-    <div>
-      <Title />
+    <>
       <div className="block">
         <div className="all-create container">
           <div className="info-create">
@@ -70,12 +79,12 @@ const Create = () => {
           <form onSubmit={handleSubmit} className="create">
             <h2 className="titleCreate">Créez un compte</h2>
             <hr />
-            <strong>Pseudo *</strong>
+            <strong>username *</strong>
             <input
               type="text"
-              name="pseudo"
-              value={pseudo}
-              onChange={handlePseudo}
+              name="username"
+              value={username}
+              onChange={handleUsername}
             />
             <strong>Adresse email *</strong>
             <input
@@ -87,20 +96,19 @@ const Create = () => {
 
             <strong>Mot de passe *</strong>
             <input
-              type="password"
-              name="password"
+              type="current-password"
               value={password}
               onChange={handlePassword}
             />
             <strong>Confirmer le mot de passe *</strong>
             <input
-              type="password"
-              name="confirmPassword"
+              type="new-password"
               value={passwordConfirm}
               onChange={handlePasswordConfirm}
             />
             <div>
               <input
+                onChange={handleCheckboxChange}
                 type="checkbox"
                 id="conditionsGenerales"
                 name="conditionsGenerales"
@@ -115,8 +123,8 @@ const Create = () => {
           </form>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 
-export default Create;
+export default SignUp;

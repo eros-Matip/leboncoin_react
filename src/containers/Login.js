@@ -1,13 +1,14 @@
 import React, { useState } from "react";
-import Title from "./Title";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import Cookies from "js-cookie";
+import { useHistory } from "react-router-dom";
 
-const LogIn = () => {
+const LogIn = ({ user, setUser }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [data, setData] = useState({});
+
+  const history = useHistory();
 
   const handleEmail = (event) => {
     setEmail(event.target.value);
@@ -16,23 +17,25 @@ const LogIn = () => {
   const handlePassword = (event) => {
     setPassword(event.target.value);
   };
+
   const handleSubmit = async (event) => {
     event.preventDefault();
     const response = await axios.post(
       "https://leboncoin-api.herokuapp.com/user/log_in",
       { email: email, password: password }
     );
-    setData(response.data);
-    alert("Votre cookie a été stocké avec succès");
-  };
-  const token = data.token;
-  Cookies.set("token", token, { expires: 15 });
+    const responseToken = { token: response.data.token };
+    const responseUsername = response.data.account;
 
-  const cookie = Cookies.get("token");
-  console.log(cookie);
+    Cookies.set("userToken", responseToken, { expires: 2000 });
+    Cookies.set("username", responseUsername, { expires: 2000 });
+    setUser(responseToken);
+
+    history.push("/");
+  };
+
   return (
     <>
-      <Title />
       <div className="pageLogIn">
         <div className="blockLog ">
           <h3 className="h3LogIn">Connexion</h3>
@@ -44,7 +47,6 @@ const LogIn = () => {
               <input
                 className="inputLogIn"
                 type="text"
-                name="email"
                 autoComplete="off"
                 value={email}
                 onChange={handleEmail}
@@ -55,29 +57,22 @@ const LogIn = () => {
               <input
                 className="inputLogIn"
                 type="password"
-                name="password"
                 autoComplete="off"
                 value={password}
                 onChange={handlePassword}
               />
             </div>
+            {handleEmail === " " ? <p>please, enter your mail ...</p> : null}
 
-            <Link
-              to={
-                handleEmail || handlePassword !== ""
-                  ? "/"
-                  : alert("parameters missing")
-              }
-            >
-              <button className="colorBlue" type="submit">
-                Se connecter
-              </button>
-            </Link>
+            <button className="colorBlue" type="submit">
+              Connexion
+            </button>
 
             <hr />
             <div className="blockCreate">
               <strong>Vous n'avez pas de compte ?</strong>
-              <Link to="/user/create">
+
+              <Link to="/sign_up">
                 <button className="backgroudBlue">Créer un compte</button>
               </Link>
             </div>
