@@ -306,16 +306,64 @@ ul {
   padding: 0px;
 }
 /* **** PUBLISH ***** */
+.container-publish {
+  width: 50%;
+}
 
 .page-publish {
   background-color: rgb(238, 238, 238);
-  height: 100vh;
+  height: 100%;
 }
 .bloc-publish {
   width: 80%;
-  border: 1px solid;
+  border-radius: 5px;
   margin: auto;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  padding: 40px 0px;
+  justify-content: center;
 }
 .h2-publish {
   text-align: center;
+}
+.input-publish {
+  height: 40px;
+  border-radius: 5px;
+  border: 1px solid rgb(184, 184, 184);
+}
+.div-publish,
+.text-publish {
+  display: flex;
+  flex-direction: column;
+  margin: auto;
+  padding: 20px;
+  width: 50%;
+}
+
+strong {
+  margin-bottom: 20px;
+}
+.valider {
+  width: 50%;
+  margin: auto;
+  background-color: #4183d7;
+  height: 40px;
+  font-size: large;
+  color: white;
+  border: none;
+  border-radius: 5px;
+}
+.hr-publish {
+  width: 50%;
+  color: #f56a29;
+}
+.input-choose {
+  border: none;
+}
+.text-publish {
+  height: 150px;
+  width: 89%;
+  border-radius: 5px;
+  border: 1px solid rgb(184, 184, 184);
 }

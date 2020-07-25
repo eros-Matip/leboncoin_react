@@ -49,37 +49,47 @@ function OfferPublish() {
   };
 
   return (
-    <form onSubmit={handleButtonClick} type="submit" className="page-publish">
-      <div className="bloc-publish">
-        <div>
-          <h2 className="h2-publish">Déposer une annonce </h2>
+    <div className="page-publish">
+      <form onSubmit={handleButtonClick} type="submit">
+        <div className="bloc-publish">
+          <div>
+            <h2 className="h2-publish">Déposer une annonce </h2>
 
-          <hr />
-        </div>
-        <div>
-          <strong>Titre de l'annonce *</strong>
-          <input onChange={handleTitleChange}></input>
-        </div>
+            <hr className="hr-publish" />
+          </div>
+          <div className="div-publish">
+            <strong>Titre de l'annonce *</strong>
+            <input
+              onChange={handleTitleChange}
+              className="input-publish"
+            ></input>
+          </div>
 
-        <div>
-          <strong>Texte de l'annonce *</strong>
-          <input onChange={handleTextChange}></input>
+          <div className="div-publish">
+            <strong>Texte de l'annonce *</strong>
+            <input onChange={handleTextChange} className="text-publish"></input>
+          </div>
+          <div className="div-publish">
+            <strong>Prix *</strong>
+            <input
+              onChange={handlePriceChange}
+              className="input-publish"
+            ></input>
+            €
+          </div>
+          <div className="div-publish">
+            <strong>Photo *</strong>
+            <input
+              className="input-choose"
+              type="file"
+              placeholder="choose file"
+              onChange={handleChangePicture}
+            ></input>
+          </div>
+          <button className="valider">Valider</button>
         </div>
-        <div>
-          <strong>Prix *</strong>
-          <input onChange={handlePriceChange}></input>€
-        </div>
-        <div>
-          <strong>Photo *</strong>
-          <input
-            type="file"
-            placeholder="choose file"
-            onChange={handleChangePicture}
-          ></input>
-        </div>
-        <button>Valider</button>
-      </div>
-    </form>
+      </form>
+    </div>
   );
 }
 export default OfferPublish;
