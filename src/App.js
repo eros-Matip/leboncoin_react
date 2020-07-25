@@ -8,7 +8,6 @@ import SingUp from "./containers/SingUp";
 import Header from "./containers/Header";
 import Filters from "./components/Filters";
 import Cookies from "js-cookie";
-import Pagination from "./components/Pagination";
 import Publish from "./containers/Publish";
 
 function App() {
@@ -24,7 +23,6 @@ function App() {
 
   const [user, setUser] = useState(newState);
   const [page, setPage] = useState(1);
-  const [data, setData] = useState({});
 
   return (
     <Router>
@@ -46,21 +44,9 @@ function App() {
           <Offer />
         </Route>
         <Route path="/">
-          <Offers
-            page={page}
-            setPage={setPage}
-            data={data}
-            setData={setData}
-            limit={limit}
-          />
+          <Offers page={page} setPage={setPage} limit={limit} />
         </Route>
       </Switch>
-      <Pagination
-        count={data.count}
-        limit={limit}
-        page={page}
-        setPage={setPage}
-      />
     </Router>
   );
 }

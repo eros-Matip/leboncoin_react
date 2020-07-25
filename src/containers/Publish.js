@@ -41,6 +41,7 @@ function OfferPublish() {
       }
     );
     history.push("/");
+    response();
   };
 
   const handleChangePicture = (event) => {

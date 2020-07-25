@@ -1,9 +1,13 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import Pagination from "../components/Pagination";
 
-function Offers({ page, data, setData, limit }) {
+function Offers({ page }) {
   const [isloading, setIsloading] = useState(true);
+  const [data, setData] = useState({});
+
+  const limit = 5;
 
   useEffect(() => {
     const fetchData = async () => {
@@ -53,6 +57,7 @@ function Offers({ page, data, setData, limit }) {
           })}
         </div>
       )}
+      <Pagination count={data.count} limit={limit} page={page} />
     </div>
   );
 }
