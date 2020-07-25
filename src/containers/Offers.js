@@ -1,14 +1,9 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
-import Pagination from "../components/Pagination";
 
-function Offers() {
+function Offers({ page, data, setData, limit }) {
   const [isloading, setIsloading] = useState(true);
-  const [data, setData] = useState({});
-  const [page, setPage] = useState(1);
-
-  const limit = 5;
 
   useEffect(() => {
     const fetchData = async () => {
@@ -31,7 +26,7 @@ function Offers() {
       ) : (
         <div>
           {data.offers.map((offer) => {
-            const dateString = Date(offer.created).toString();
+            const dateString = new Date(offer.created).toString();
 
             return (
               <Link key={offer._id} to={"/offer/" + offer._id}>
@@ -56,7 +51,6 @@ function Offers() {
               </Link>
             );
           })}
-          <Pagination count={data.count} limit={limit} setPage={setPage} />
         </div>
       )}
     </div>

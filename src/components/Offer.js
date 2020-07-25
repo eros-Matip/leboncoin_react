@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useParams } from "react-router-dom";
 
-const Annonces = () => {
+const Offer = () => {
   const { id } = useParams();
 
   const [data, setData] = useState({});
@@ -58,4 +58,4 @@ const Annonces = () => {
     </div>
   );
 };
-export default Annonces;
+export default Offer;

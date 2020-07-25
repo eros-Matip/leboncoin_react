@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import axios from "axios";
-import cookie from "js-cookie";
+import Cookies from "js-cookie";
 import { useHistory } from "react-router-dom";
 
-const SignUp = () => {
+const SignUp = ({ setUser }) => {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -36,8 +36,9 @@ const SignUp = () => {
       }
     );
     if (response.data.token) {
-      cookie.set("token", response.data.token);
-      history.push("/login");
+      Cookies.set("userToken", response.data.token);
+      setUser(response.data.token);
+      history.push("/");
     }
   };
 

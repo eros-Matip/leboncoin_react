@@ -7,16 +7,59 @@ function Filters() {
   const [isloading, setIsloading] = useState(true);
   const [data, setData] = useState({});
   const [page, setPage] = useState(1);
-  const [result, setResult] = useState({});
+  const [search, setSearch] = useState({});
+  const [priceMin, setPriceMin] = useState(0);
+  const [priceMax, setPriceMax] = useState(0);
+  const [sort, setSort] = useState("");
+  const [more, setMore] = useState(false);
 
   const limit = 5;
 
-  const handleChange = (event) => {
-    setResult(event.target.value);
+  const handleSearchChange = (event) => {
+    setSearch(event.target.value);
   };
 
-  const handleClick = (event) => {
+  const handleClick = async (event) => {
     event.preventDefault();
+    const params = {
+      title: search,
+      priceMin,
+      priceMax,
+      sort,
+    };
+
+    if (!priceMin) {
+      delete params.priceMin;
+    }
+    if (!priceMax) {
+      delete params.priceMax;
+    }
+    if (!sort) {
+      delete params.sort;
+    }
+
+    const queryString = Object.keys(params)
+      .map((key) => `${key}=${params[key]}`)
+      .join("&");
+
+    const response = await axios.get(
+      `https://leboncoin-api.herokuapp.com/offer/with-count?${queryString}`
+    );
+    setData(response.data);
+  };
+
+  const handlePriceMinChange = (event) => {
+    setPriceMin(event.target.value);
+  };
+  const handlePriceMaxChange = (event) => {
+    setPriceMax(event.target.value);
+  };
+  const handleSortChange = (event) => {
+    setSort(event.target.value);
+  };
+
+  const handleMoreChange = () => {
+    setMore(!more);
   };
 
   useEffect(() => {
@@ -34,14 +77,57 @@ function Filters() {
   return (
     <div className="page">
       <div className="orange"></div>
-      <form onClick={handleClick} className="filter">
+      <form onSubmit={handleClick} className="filter">
         <div className="block-filter">
-          <input
-            className="input-filter"
-            onChange={handleChange}
-            placeholder="que recherchez vous ?"
-          ></input>
-          <button className="btn-filter">Rechercher</button>
+          <div className="bloc-search">
+            <input
+              className="input-filter"
+              onChange={handleSearchChange}
+              placeholder="que recherchez vous ?"
+            ></input>
+
+            <button type="submit" className="btn-filter">
+              Rechercher
+            </button>
+            <div>
+              <p className="more-info">Afficher plus</p>
+              <input
+                onChange={handleMoreChange}
+                type="checkbox"
+                id="filters"
+                name="filters"
+              />
+            </div>
+          </div>
+          <div>
+            {more === true && (
+              <div>
+                <label htmlFor="priceMin">price min</label>
+                <input
+                  id="priceMin"
+                  className="input-number"
+                  type="number"
+                  onChange={handlePriceMinChange}
+                ></input>
+
+                <label htmlFor="priceMax">price Max</label>
+                <input
+                  id="priceMax"
+                  className="input-number"
+                  type="number"
+                  onChange={handlePriceMaxChange}
+                ></input>
+
+                <label htmlFor="sort">Sort</label>
+                <select onChange={handleSortChange}>
+                  <option value="price-desc">Price Desc</option>
+                  <option value="price-asc">Price Asc</option>
+                  <option value="date-desc">Date Desc</option>
+                  <option value="date-desc">Date Asc</option>
+                </select>
+              </div>
+            )}
+          </div>
         </div>
       </form>
 

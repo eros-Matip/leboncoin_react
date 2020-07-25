@@ -148,6 +148,7 @@ h3 {
   height: 40px;
   width: 150px;
   cursor: pointer;
+  margin: 0px 10px;
 }
 .input-filter {
   background-color: rgb(238, 238, 238);
@@ -155,10 +156,15 @@ h3 {
   border-radius: 5px;
   height: 40px;
   width: 300px;
-  margin-right: 10px;
   font-size: large;
   box-sizing: border-box;
   padding: 10px;
+}
+.bloc-search {
+  display: flex;
+}
+.more-info {
+  margin: 0px;
 }
 
 .picture-description {
@@ -298,4 +304,18 @@ li {
 }
 ul {
   padding: 0px;
+}
+/* **** PUBLISH ***** */
+
+.page-publish {
+  background-color: rgb(238, 238, 238);
+  height: 100vh;
+}
+.bloc-publish {
+  width: 80%;
+  border: 1px solid;
+  margin: auto;
+}
+.h2-publish {
+  text-align: center;
 }

@@ -24,7 +24,7 @@ const LogIn = ({ user, setUser }) => {
       "https://leboncoin-api.herokuapp.com/user/log_in",
       { email: email, password: password }
     );
-    const responseToken = { token: response.data.token };
+    const responseToken = response.data.token;
     const responseUsername = response.data.account;
 
     Cookies.set("userToken", responseToken, { expires: 2000 });

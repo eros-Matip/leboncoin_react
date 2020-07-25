@@ -5,7 +5,7 @@ import Cookies from "js-cookie";
 
 function Title({ user, setUser }) {
   const history = useHistory();
-  console.log("user ->", user);
+  const token = Cookies.get("userToken");
 
   return (
     <div className="headerBand">
@@ -14,9 +14,11 @@ function Title({ user, setUser }) {
           <Link to="/">
             <img className="logo" alt="leboncoin" src={logo}></img>
           </Link>
-          <button className="btn-plus">
-            <i className="far fa-plus-square"></i> Déposer une annonce
-          </button>
+          <Link to={token !== undefined ? "/publish" : "/log_in"}>
+            <button className="btn-plus">
+              <i className="far fa-plus-square"></i> Déposer une annonce
+            </button>
+          </Link>
           <Link to="/offer/whith-count">
             <button className="btn-search">
               <i className="fas fa-search"></i>Rechercher
@@ -38,7 +40,8 @@ function Title({ user, setUser }) {
               onClick={() => {
                 Cookies.remove("userToken");
                 Cookies.remove("username");
-
+                Cookies.remove("tokenSignUp");
+                Cookies.remove("token");
                 setUser(null);
                 history.push("/");
               }}
