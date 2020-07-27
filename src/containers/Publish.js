@@ -31,8 +31,9 @@ function OfferPublish() {
 
   const handleButtonClick = async (event) => {
     event.preventDefault();
-    const response = await axios.post(
-      "https://leboncoin-api.herokuapp.com/offer/publish",
+
+    await axios.post(
+      `${process.env.REACT_APP_API_URL}/offer/publish`,
       formData,
       {
         headers: {
@@ -41,7 +42,6 @@ function OfferPublish() {
       }
     );
     history.push("/");
-    response();
   };
 
   const handleChangePicture = (event) => {

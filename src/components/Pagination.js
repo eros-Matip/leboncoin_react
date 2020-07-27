@@ -13,7 +13,7 @@ function Pagination({ count, limit, setPage }) {
     );
   }
   const handleClickIncrement = () => {
-    setPage();
+    setPage(1);
   };
 
   const handleClickDecrement = () => {

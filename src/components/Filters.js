@@ -43,7 +43,7 @@ function Filters() {
       .join("&");
 
     const response = await axios.get(
-      `https://leboncoin-api.herokuapp.com/offer/with-count?${queryString}`
+      `${process.env.REACT_APP_API_URL}/offer/with-count?${queryString}`
     );
     setData(response.data);
   };
@@ -65,7 +65,7 @@ function Filters() {
   useEffect(() => {
     const fetchData = async () => {
       const response = await axios.get(
-        `https://leboncoin-api.herokuapp.com/offer/with-count?page=${page}&limit=${limit}`
+        `${process.env.REACT_APP_API_URL}/offer/with-count?page=${page}&limit=${limit}`
       );
       setData(response.data);
       setIsloading(false);
@@ -135,9 +135,8 @@ function Filters() {
         <p className="charging">En cours de chargement ...</p>
       ) : (
         <div>
-          {data.offers.map((offer) => {
+          {data.anoncesFilters.map((offer) => {
             const dateString = Date(offer.created).toString();
-
             return (
               <div>
                 <Link key={offer._id} to={"/offer/" + offer._id}>
@@ -145,7 +144,7 @@ function Filters() {
                     <div>
                       <img
                         className="offers"
-                        src={offer.picture.secure_url}
+                        src={offer.file.secure_url}
                         alt="decription d'annonce"
                       ></img>
                     </div>

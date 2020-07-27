@@ -21,7 +21,7 @@ const LogIn = ({ user, setUser }) => {
   const handleSubmit = async (event) => {
     event.preventDefault();
     const response = await axios.post(
-      "https://leboncoin-api.herokuapp.com/user/log_in",
+      `${process.env.REACT_APP_API_URL}/user/log_in`,
       { email: email, password: password }
     );
     const responseToken = response.data.token;

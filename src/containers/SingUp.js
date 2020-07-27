@@ -28,7 +28,7 @@ const SignUp = ({ setUser }) => {
   const handleSubmit = async (event) => {
     event.preventDefault();
     const response = await axios.post(
-      "https://leboncoin-api.herokuapp.com/user/sign_up",
+      `${process.env.REACT_APP_API_URL}/user/sign_up"`,
       {
         username: username,
         email: email,

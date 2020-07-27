@@ -3,7 +3,7 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 import Pagination from "../components/Pagination";
 
-function Offers({ page }) {
+function Offers({ page, setPage }) {
   const [isloading, setIsloading] = useState(true);
   const [data, setData] = useState({});
 
@@ -12,12 +12,11 @@ function Offers({ page }) {
   useEffect(() => {
     const fetchData = async () => {
       const response = await axios.get(
-        `https://leboncoin-api.herokuapp.com/offer/with-count?page=${page}&limit=${limit}`
+        `${process.env.REACT_APP_API_URL}/offer/with-count?page=${page}&limit=${limit}`
       );
       setData(response.data);
       setIsloading(false);
     };
-
     fetchData();
   }, [page]);
 
@@ -29,16 +28,15 @@ function Offers({ page }) {
         <p className="charging">En cours de chargement ...</p>
       ) : (
         <div>
-          {data.offers.map((offer) => {
+          {data.anoncesFilters.map((offer) => {
             const dateString = new Date(offer.created).toString();
-
             return (
               <Link key={offer._id} to={"/offer/" + offer._id}>
                 <div className="box">
                   <div>
                     <img
                       className="offers"
-                      src={offer.picture.secure_url}
+                      src={offer.file.secure_url}
                       alt="decription d'annonce"
                     ></img>
                   </div>
@@ -57,7 +55,7 @@ function Offers({ page }) {
           })}
         </div>
       )}
-      <Pagination count={data.count} limit={limit} page={page} />
+      <Pagination count={data.count} limit={limit} setPage={setPage} />
     </div>
   );
 }
