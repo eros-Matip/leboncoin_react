@@ -3,9 +3,8 @@ import axios from "axios";
 import Pagination from "../components/Pagination";
 import { Link } from "react-router-dom";
 
-function Filters() {
+function Filters({ data, setData }) {
   const [isloading, setIsloading] = useState(true);
-  const [data, setData] = useState({});
   const [page, setPage] = useState(1);
   const [search, setSearch] = useState({});
   const [priceMin, setPriceMin] = useState(0);
@@ -79,7 +78,7 @@ function Filters() {
       <div className="orange"></div>
       <form onSubmit={handleClick} className="filter">
         <div className="block-filter">
-          <div className="bloc-search">
+          <div>
             <input
               className="input-filter"
               onChange={handleSearchChange}
@@ -101,70 +100,42 @@ function Filters() {
           </div>
           <div>
             {more === true && (
-              <div>
-                <label htmlFor="priceMin">price min</label>
-                <input
-                  id="priceMin"
-                  className="input-number"
-                  type="number"
-                  onChange={handlePriceMinChange}
-                ></input>
+              <div className="block_filters">
+                <div className="div_filter">
+                  <label htmlFor="priceMin">price min</label>
+                  <input
+                    id="priceMin"
+                    className="input-number"
+                    type="number"
+                    onChange={handlePriceMinChange}
+                  ></input>
+                  €
+                </div>
+                <div className="div_filter">
+                  <label htmlFor="priceMax">price Max</label>
+                  <input
+                    id="priceMax"
+                    className="input-number"
+                    type="number"
+                    onChange={handlePriceMaxChange}
+                  ></input>
+                  €
+                </div>
 
-                <label htmlFor="priceMax">price Max</label>
-                <input
-                  id="priceMax"
-                  className="input-number"
-                  type="number"
-                  onChange={handlePriceMaxChange}
-                ></input>
-
-                <label htmlFor="sort">Sort</label>
-                <select onChange={handleSortChange}>
-                  <option value="price-desc">Price Desc</option>
-                  <option value="price-asc">Price Asc</option>
-                  <option value="date-desc">Date Desc</option>
-                  <option value="date-desc">Date Asc</option>
-                </select>
+                <div className="div_filter">
+                  <label htmlFor="sort">Sort</label>
+                  <select onChange={handleSortChange}>
+                    <option value="price-desc">Price Desc</option>
+                    <option value="price-asc">Price Asc</option>
+                    <option value="date-desc">Date Desc</option>
+                    <option value="date-desc">Date Asc</option>
+                  </select>
+                </div>
               </div>
             )}
           </div>
         </div>
       </form>
-
-      {isloading === true ? (
-        <p className="charging">En cours de chargement ...</p>
-      ) : (
-        <div>
-          {data.anoncesFilters.map((offer) => {
-            const dateString = Date(offer.created).toString();
-            return (
-              <div>
-                <Link key={offer._id} to={"/offer/" + offer._id}>
-                  <div className="box">
-                    <div>
-                      <img
-                        className="offers"
-                        src={offer.file.secure_url}
-                        alt="decription d'annonce"
-                      ></img>
-                    </div>
-                    <div className="offers-description">
-                      <div>
-                        <h3>{offer.title} </h3>
-                        <h3 className="price">{offer.price} €</h3>
-                      </div>
-                      <div>
-                        <p>{dateString}</p>
-                      </div>
-                    </div>
-                  </div>
-                </Link>
-              </div>
-            );
-          })}
-          <Pagination count={data.count} limit={limit} setPage={setPage} />
-        </div>
-      )}
     </div>
   );
 }

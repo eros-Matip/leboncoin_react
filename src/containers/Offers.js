@@ -3,11 +3,15 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 import Pagination from "../components/Pagination";
 
-function Offers({ page, setPage }) {
+import Filters from "../components/Filters";
+
+function Offers({ filter, setFilter }) {
   const [isloading, setIsloading] = useState(true);
   const [data, setData] = useState({});
+  const [page, setPage] = useState(1);
+  const [count, setCount] = useState();
 
-  const limit = 5;
+  const limit = 3;
 
   useEffect(() => {
     const fetchData = async () => {
@@ -15,6 +19,7 @@ function Offers({ page, setPage }) {
         `${process.env.REACT_APP_API_URL}/offer/with-count?page=${page}&limit=${limit}`
       );
       setData(response.data);
+      setCount(response.data.count);
       setIsloading(false);
     };
     fetchData();
@@ -22,40 +27,61 @@ function Offers({ page, setPage }) {
 
   return (
     <div className="page">
-      <div className="orange"></div>
+      {filter === false ? (
+        <div className="orange"></div>
+      ) : (
+        <Filters data={data} setData={setData} />
+      )}
 
       {isloading === true ? (
-        <p className="charging">En cours de chargement ...</p>
+        <div className="anounce_page">
+          <p className="charging">En cours de chargement ...</p>
+        </div>
       ) : (
-        <div>
-          {data.anoncesFilters.map((offer) => {
-            const dateString = new Date(offer.created).toString();
-            return (
-              <Link key={offer._id} to={"/offer/" + offer._id}>
-                <div className="box">
-                  <div>
-                    <img
-                      className="offers"
-                      src={offer.file.secure_url}
-                      alt="decription d'annonce"
-                    ></img>
-                  </div>
-                  <div className="offers-description">
+        <div className="anounce_page">
+          <div>
+            {data.anonces.map((offer) => {
+              // DATE
+              const numberOfDay = new Date(offer.created).getDate();
+              const month = new Date(offer.created).getMonth();
+              const year = new Date(offer.created).getFullYear();
+
+              return (
+                <Link key={offer._id} to={"/offer/" + offer._id}>
+                  <div className="box">
                     <div>
-                      <h3>{offer.title} </h3>
-                      <h3 className="price">{offer.price} €</h3>
+                      <img
+                        className="offers_img"
+                        src={offer.file.secure_url}
+                        alt="decription d'annonce"
+                      ></img>
                     </div>
-                    <div>
-                      <p>{dateString}</p>
+                    <div className="offers-description">
+                      <div>
+                        <h3>{offer.title} </h3>
+                        <h3 className="price">{offer.price} €</h3>
+                      </div>
+                      <div className="anounce_date">
+                        <p>{numberOfDay}/</p>
+                        <p> {month + 1}/</p>
+                        <p>{year}</p>
+                      </div>
                     </div>
                   </div>
-                </div>
-              </Link>
-            );
-          })}
+                </Link>
+              );
+            })}
+          </div>
+          <div>
+            <Pagination
+              count={count}
+              limit={limit}
+              page={page}
+              setPage={setPage}
+            />
+          </div>
         </div>
       )}
-      <Pagination count={data.count} limit={limit} setPage={setPage} />
     </div>
   );
 }

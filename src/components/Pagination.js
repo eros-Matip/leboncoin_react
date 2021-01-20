@@ -1,37 +1,40 @@
 import React from "react";
 
-function Pagination({ count, limit, setPage }) {
-  const buttonPage = count / limit;
-
+function Pagination({ count, limit, page, setPage }) {
+  const buttonPage = Math.round(count / limit + 1);
   const buttons = [];
 
-  for (let index = 1; index <= buttonPage; index++) {
+  console.log("page->", page);
+  console.log("buttons->", buttons);
+  for (let i = 1; i <= buttonPage; i++) {
     buttons.push(
-      <button key={index} onClick={() => setPage(index)}>
-        {index}
+      <button
+        className={i === page ? "btn-page-selected" : "btn-page"}
+        key={i}
+        onClick={() => setPage(i)}
+      >
+        {i}
       </button>
     );
   }
   const handleClickIncrement = () => {
-    setPage(1);
+    setPage(page + 1);
   };
 
   const handleClickDecrement = () => {
-    setPage(0);
+    setPage(page - 1);
   };
 
   return (
-    <>
-      <div className="btn-page">
-        <button onClick={handleClickDecrement}>
-          <i className="fas fa-chevron-left"></i>
-        </button>
-        <div>{buttons}</div>
-        <button onClick={handleClickIncrement}>
-          <i className="fas fa-chevron-right"></i>
-        </button>
-      </div>
-    </>
+    <div className="pagination-btn">
+      <button onClick={handleClickDecrement} className="btn_border_none">
+        <i className="fas fa-chevron-left"></i>
+      </button>
+      <div className="all_btn_page">{buttons}</div>
+      <button onClick={handleClickIncrement} className="btn_border_none">
+        <i className="fas fa-chevron-right"></i>
+      </button>
+    </div>
   );
 }
 

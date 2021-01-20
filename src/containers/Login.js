@@ -35,51 +35,47 @@ const LogIn = ({ user, setUser }) => {
   };
 
   return (
-    <>
-      <div className="pageLogIn">
-        <div className="blockLog ">
-          <h3 className="h3LogIn">Connexion</h3>
-          <hr className="hrLogIn" />
+    <div className="pageLogIn">
+      <div className="blockLog ">
+        <h3 className="h3LogIn">Connexion</h3>
+        <hr className="hrLogIn" />
+        <form onSubmit={handleSubmit} className="formLogIn">
+          <div className="blockInput">
+            <strong className="strongLogIn">Adresse email</strong>
+            <input
+              className="inputLogIn"
+              type="text"
+              autoComplete="off"
+              value={email}
+              onChange={handleEmail}
+            />
+          </div>
+          <div className="blockInput">
+            <strong className="strongLogIn">Mot de Passe</strong>
+            <input
+              className="inputLogIn"
+              type="password"
+              autoComplete="off"
+              value={password}
+              onChange={handlePassword}
+            />
+          </div>
+          {handleEmail === " " ? <p>please, enter your mail ...</p> : null}
 
-          <form onSubmit={handleSubmit} className="formLogIn">
-            <div className="blockInput">
-              <strong className="strongLogIn">Adresse email</strong>
-              <input
-                className="inputLogIn"
-                type="text"
-                autoComplete="off"
-                value={email}
-                onChange={handleEmail}
-              />
-            </div>
-            <div className="blockInput">
-              <strong className="strongLogIn">Mot de Passe</strong>
-              <input
-                className="inputLogIn"
-                type="password"
-                autoComplete="off"
-                value={password}
-                onChange={handlePassword}
-              />
-            </div>
-            {handleEmail === " " ? <p>please, enter your mail ...</p> : null}
+          <button className="btn-blue" type="submit">
+            Connexion
+          </button>
+        </form>
+        <hr style={{ opacity: 0.4 }} />
+        <div className="blockCreate">
+          <strong className="strongLogIn">Vous n'avez pas de compte ?</strong>
 
-            <button className="colorBlue" type="submit">
-              Connexion
-            </button>
-
-            <hr />
-            <div className="blockCreate">
-              <strong>Vous n'avez pas de compte ?</strong>
-
-              <Link to="/sign_up">
-                <button className="backgroudBlue">Créer un compte</button>
-              </Link>
-            </div>
-          </form>
+          <Link to="/sign_up" className="backgroudBlue">
+            Créer un compte
+          </Link>
         </div>
       </div>
-    </>
+    </div>
   );
 };
 export default LogIn;

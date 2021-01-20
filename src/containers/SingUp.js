@@ -28,11 +28,12 @@ const SignUp = ({ setUser }) => {
   const handleSubmit = async (event) => {
     event.preventDefault();
     const response = await axios.post(
-      `${process.env.REACT_APP_API_URL}/user/sign_up"`,
+      `${process.env.REACT_APP_API_URL}/user/sign_up`,
       {
-        username: username,
         email: email,
+        username: username,
         password: password,
+        passwordConfirm: passwordConfirm,
       }
     );
     if (response.data.token) {
@@ -97,13 +98,15 @@ const SignUp = ({ setUser }) => {
 
             <strong>Mot de passe *</strong>
             <input
-              type="current-password"
+              type="password"
               value={password}
+              name="password"
               onChange={handlePassword}
             />
             <strong>Confirmer le mot de passe *</strong>
             <input
-              type="new-password"
+              type="password"
+              name="passwordConfirm"
               value={passwordConfirm}
               onChange={handlePasswordConfirm}
             />
