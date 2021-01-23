@@ -4,8 +4,6 @@ function Pagination({ count, limit, page, setPage }) {
   const buttonPage = Math.round(count / limit + 1);
   const buttons = [];
 
-  console.log("page->", page);
-  console.log("buttons->", buttons);
   for (let i = 1; i <= buttonPage; i++) {
     buttons.push(
       <button
@@ -27,13 +25,17 @@ function Pagination({ count, limit, page, setPage }) {
 
   return (
     <div className="pagination-btn">
-      <button onClick={handleClickDecrement} className="btn_border_none">
-        <i className="fas fa-chevron-left"></i>
-      </button>
+      {page !== 1 && (
+        <button onClick={handleClickDecrement} className="btn_border_none">
+          <i className="fas fa-chevron-left"></i>
+        </button>
+      )}
       <div className="all_btn_page">{buttons}</div>
-      <button onClick={handleClickIncrement} className="btn_border_none">
-        <i className="fas fa-chevron-right"></i>
-      </button>
+      {page !== buttonPage && (
+        <button onClick={handleClickIncrement} className="btn_border_none">
+          <i className="fas fa-chevron-right"></i>
+        </button>
+      )}
     </div>
   );
 }

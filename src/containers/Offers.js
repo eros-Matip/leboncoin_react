@@ -30,7 +30,7 @@ function Offers({ filter, setFilter }) {
       {filter === false ? (
         <div className="orange"></div>
       ) : (
-        <Filters data={data} setData={setData} />
+        <Filters setData={setData} />
       )}
 
       {isloading === true ? (

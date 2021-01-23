@@ -1,18 +1,12 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import axios from "axios";
-import Pagination from "../components/Pagination";
-import { Link } from "react-router-dom";
 
-function Filters({ data, setData }) {
-  const [isloading, setIsloading] = useState(true);
-  const [page, setPage] = useState(1);
+function Filters({ setData }) {
   const [search, setSearch] = useState({});
   const [priceMin, setPriceMin] = useState(0);
   const [priceMax, setPriceMax] = useState(0);
   const [sort, setSort] = useState("");
   const [more, setMore] = useState(false);
-
-  const limit = 5;
 
   const handleSearchChange = (event) => {
     setSearch(event.target.value);
@@ -61,24 +55,12 @@ function Filters({ data, setData }) {
     setMore(!more);
   };
 
-  useEffect(() => {
-    const fetchData = async () => {
-      const response = await axios.get(
-        `${process.env.REACT_APP_API_URL}/offer/with-count?page=${page}&limit=${limit}`
-      );
-      setData(response.data);
-      setIsloading(false);
-    };
-
-    fetchData();
-  }, [page]);
-
   return (
     <div className="page">
       <div className="orange"></div>
       <form onSubmit={handleClick} className="filter">
         <div className="block-filter">
-          <div>
+          <div className="box_filters">
             <input
               className="input-filter"
               onChange={handleSearchChange}
@@ -98,37 +80,40 @@ function Filters({ data, setData }) {
               />
             </div>
           </div>
-          <div>
+          <div className="box_filters">
             {more === true && (
-              <div className="block_filters">
+              <div className="block_sort">
+                <p>Prix entre</p>
                 <div className="div_filter">
-                  <label htmlFor="priceMin">price min</label>
+                  <label htmlFor="priceMin" />
+
                   <input
                     id="priceMin"
                     className="input-number"
                     type="number"
                     onChange={handlePriceMinChange}
+                    placeholder="prix min"
                   ></input>
-                  €
                 </div>
+                <p>et</p>
                 <div className="div_filter">
-                  <label htmlFor="priceMax">price Max</label>
+                  <label htmlFor="priceMax" />
                   <input
                     id="priceMax"
                     className="input-number"
                     type="number"
+                    placeholder="prix max"
                     onChange={handlePriceMaxChange}
                   ></input>
-                  €
                 </div>
 
-                <div className="div_filter">
-                  <label htmlFor="sort">Sort</label>
-                  <select onChange={handleSortChange}>
-                    <option value="price-desc">Price Desc</option>
-                    <option value="price-asc">Price Asc</option>
-                    <option value="date-desc">Date Desc</option>
-                    <option value="date-desc">Date Asc</option>
+                <div>
+                  <label htmlFor="sort"></label>
+                  <select onChange={handleSortChange} className="sort">
+                    <option value="price-desc">Du prix le plus grand</option>
+                    <option value="price-asc">Du prix le plus petit</option>
+                    <option value="date-desc">Le moins ancien</option>
+                    <option value="date-desc">Le plus ancien</option>
                   </select>
                 </div>
               </div>
